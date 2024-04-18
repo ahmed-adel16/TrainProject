@@ -7,6 +7,7 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         int choice;
+        System.out.println("hi");
         do {
             System.out.println("User Access Menu");
             System.out.println("1. Sign Up");
