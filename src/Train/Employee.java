@@ -1,17 +1,12 @@
 
 package Train;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
+import java.security.*;
 import java.sql.*;
-
 
 public class Employee extends Person {
     private String employeeUID; // Unique ID for the employee
     private String password;
-
-    private static HashMap <String, String> employeeCredentials = new HashMap<>();
     static Connection c = null;
     // Constructor to initialize employee attributes
     public Employee(String name, String email, int age, String tel, String password) {
@@ -28,15 +23,6 @@ public class Employee extends Person {
         return doHashing(password);
     }
     
-    public static void main(String args[]) throws ClassNotFoundException, SQLException{
-        Employee e2 = new Employee("Ahmed", "Ahmed11222@gmail.com", 20, "01029957328", "zaghloul22");
-        e2.saveData();
-        Employee e3 = new Employee("Zaghloul", "zaghloul222@gmail.com", 19, "01045822345", "zaghloul22");
-        e3.saveData();
-
-
-
-    }
     
     public void saveData() throws ClassNotFoundException, SQLException{
             PreparedStatement ps = null;
