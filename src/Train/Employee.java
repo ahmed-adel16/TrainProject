@@ -9,7 +9,7 @@ public class Employee extends Person {
     private String password;
     static Connection c = null;
     // Constructor to initialize employee attributes
-    public Employee(String name, String email, int age, String tel, String password) {
+    public Employee(String name, String tel, int age, String email, String password) {
         super(name, email, age, tel); // Call to parent class constructor
         this.employeeUID = "EMP"; // Generate employee ID    
         this.password = password;
@@ -30,13 +30,14 @@ public class Employee extends Person {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:test.db");
             System.out.println("Connected");
-            String sql = "INSERT INTO Employee (Name, Age, Email, Password) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO Employee (Name, Age, Tel, Email, Password) VALUES (?, ?, ?, ?, ?)";
             ps = c.prepareStatement(sql);
             
             ps.setString(1, this.getName());
             ps.setInt(2, this.getAge());
-            ps.setString(3, this.getEmail());
-            ps.setString(4, this.getPassword());
+            ps.setString(3, this.getTel());
+            ps.setString(4, this.getEmail());
+            ps.setString(5, this.getPassword());
             ps.executeUpdate();
             ps.close();
             c.close();
