@@ -1,43 +1,39 @@
 package Train;
 
-import java.util.ArrayList;
-import java.util.List;
-
 // Represents a train with attributes like train number, name, and seats
 public class Train {
-    private static int nextTrainId = 1;
-    private String trainNumber;
+    private int trainNumber;
     private String trainName;
     private int seats;
     private Line line;
-    private static List<Train> trains = new ArrayList<>(); // Stores Train's Details
+    private String departureStation;
+    private String arrivalStation;
+    private int ticketsLeft;
 
     // Constructor to initialize train attributes
-    public Train(String trainName, int seats, Line line) {
-        this.trainNumber = "TRN" + nextTrainId++;
+    public Train(int trainNumber, String trainName, int seats, Line line, int ticketsLeft) {
+        this.trainNumber = trainNumber;
         this.trainName = trainName;
-        this.line = line;
         this.seats = seats;
-        trains.add(this);
+        this.line = line;
+        this.ticketsLeft = ticketsLeft;
     }
 
-    public void removeTrain() {
-        trains.remove(this);
+    // In the Train class
+    public int getTicketsLeft() {
+        return ticketsLeft;
     }
 
-    public static void showAllTrains() {
-        for (Train train : trains) {
-            System.out.println(train);
-        }
+
+
+    public void setTicketsLeft(int ticketsLeft) {
+        this.ticketsLeft = ticketsLeft;
+        // Update the database with the new number of tickets left
+        DatabaseManager.updateTicketsLeft(trainNumber, ticketsLeft);
     }
 
-    public static List<Train> getTrains() {
-        return trains;
-    }
 
-    
-    
-    public String getTrainNumber() {
+    public int getTrainNumber() {
         return trainNumber;
     }
 
@@ -53,24 +49,41 @@ public class Train {
         this.seats = seats;
     }
 
+
     @Override
     public String toString() {
+        String lineInfo = (line != null) ? "\nFrom: " + line.getDepartureStation() + " To: " + line.getArrivalStation() : "";
         return "\nTrain Name: " + trainName +
                 "\nTrain Number: " + trainNumber +
                 "\nSeats: " + seats +
-                "\nFrom: " + line.getDepartureStation() + " To: " + line.getArrivalStation();
+                lineInfo;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Train)) return false;
-        Train train = (Train) o;
-        return trainNumber.equals(train.trainNumber);
+    public String getDepartureStation() {
+        
+        return line.getDepartureStation();
     }
 
-    @Override
-    public int hashCode() {
-        return trainNumber.hashCode();
+    public String getArrivalStation() {
+        return line.getArrivalStation();
     }
+    
+
+    public void setDepartureStation(String departureStation) {
+        this.departureStation = departureStation;
+    }
+    
+    public void setArrivalStation(String arrivalStation) {
+        this.arrivalStation = arrivalStation;
+    }
+
+
+
+
+
+
+
+
 }
+
+

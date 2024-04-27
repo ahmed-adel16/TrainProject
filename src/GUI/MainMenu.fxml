@@ -10,8 +10,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginController">
    <children>
-      <Button layoutX="402.0" layoutY="298.0" mnemonicParsing="false" onAction="#login" prefHeight="45.0" prefWidth="77.0" text="Login" />
-      <Button layoutX="112.0" layoutY="298.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="77.0" text="Cancel" />
+      <Button fx:id = "PrimaryButton" layoutX="402.0" layoutY="298.0" mnemonicParsing="false" onAction="#login" prefHeight="45.0" prefWidth="100.0" text="Login" />
+      <Button fx:id = "SecondaryButton" layoutX="112.0" layoutY="298.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="100.0" text="Register" />
       <Label fx:id="userLabel" alignment="CENTER" layoutX="62.0" layoutY="83.0" prefHeight="50.0" prefWidth="176.0" text="Username" textAlignment="CENTER" AnchorPane.bottomAnchor="278.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="83.0">
          <font>
             <Font size="16.0" />
@@ -28,7 +28,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </Label>
-      <PasswordField layoutX="255.0" layoutY="191.0" prefHeight="31.0" prefWidth="185.0" />
-      <TextField layoutX="255.0" layoutY="93.0" prefHeight="31.0" prefWidth="185.0" />
+      <PasswordField fx:id="pass" layoutX="255.0" layoutY="191.0" prefHeight="31.0" prefWidth="185.0" promptText="Enter your password" />
+      <TextField fx:id="email" layoutX="255.0" layoutY="93.0" prefHeight="31.0" prefWidth="185.0" promptText="Enter your email"  />
    </children>
 </AnchorPane>

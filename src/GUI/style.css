@@ -1,0 +1,173 @@
+.root{
+    -fx-background-color: linear-gradient(to right, #d6d6d6, #ecebeb, #d6d6d6);
+    -fx-font-familly:"Lucida Console";
+}
+
+.label {
+    -fx-font-size:13px;
+    -fx-text-fill: #34495e;
+    -fx-font-weight: bold;
+
+}
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 2px;
+    -fx-padding: 5px;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: #2ecc6f;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+    -fx-cursor: text;
+    
+}
+
+.text-field:focused{
+    -fx-border-color: #2ecc6f;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+    
+}
+.text-field:hover{
+    -fx-border-color: #2ecc6f;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);    
+}
+
+.button {
+    -fx-width: 100px;
+    -fx-height: 45px;
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-padding: 10px 25px 10px 25px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+    -fx-cursor: hand;
+    
+}
+
+.button:hover {
+}
+
+.button:hover {
+    -fx-background-color:  #27ae60 ;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+}
+.button:focused {
+    -fx-background-color:  #27ae60 ;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+}
+
+.button:pressed{
+    -fx-background-color: #1e8449;
+}
+
+#title{
+    -fx-font-size: 30px;
+}
+
+.radio-button:hover{
+     -fx-text-fill:#2ecc71;
+}
+.radio-button:selected{
+     -fx-text-fill:#2ecc71;
+}
+
+#loginMessage{
+    -fx-text-fill: #FF5733;
+    -fx-font-family: sans-serif;
+    -fx-font-size: 11px;
+}
+
+.flow-pane{
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-padding: 5px;
+}
+
+.stack-pane{
+    -fx-background-color: white;
+}
+.scroll-pane {
+    -fx-background-color: white;
+}
+
+
+.table-cell {
+    -fx-alignment: center
+}
+.column-header {
+    -fx-background-color: #2ECC71;
+    
+}
+
+#sideMenu {
+    -fx-background-color: #138808;
+}
+
+#topMenu {
+    -fx-font-weight:bold;
+    -fx-background-color: #004953;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 10, 0, 0, 0);
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
+#topMenu .label{
+-fx-text-fill:white;
+}
+
+#mainTitle {
+    -fx-font-size:19px;
+    -fx-font-weight: bold;
+    -fx-text-fill:white;
+}
+
+#backButton {
+    -fx-background-color:  transparent;
+    -fx-padding:0;
+
+}
+#backButton:hover {
+    -fx-background-color:#006877;
+}
+#backButton:pressed{
+    -fx-background-color: #00363E;
+}
+#cancelBookingButton {
+    -fx-background-color: #EA0000;
+}
+#cancelBookingButton:hover {
+    -fx-background-color: #d10000;
+}
+#cancelBookingButton:pressed {
+    -fx-background-color: #B00000;
+}
+
+
+#closeButton {
+    -fx-background-color:  transparent;
+    -fx-padding:0;
+    -fx-background-radius: 0px;
+}
+
+#closeButton:hover{
+    -fx-background-color:darkred;
+}
+#closeButton:pressed{
+    -fx-background-color:crimson;
+
+}
+.choice-box {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 2px;
+    -fx-padding: 1px;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: #2ecc6f;
+    -fx-cursor: none;
+    
+}
+
+
+.list-cell {
+    -fx-pref-width:100px;
+    -fx-background-color:black;
+    -fx-text-fill:#2ECC71;
+}

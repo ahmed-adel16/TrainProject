@@ -1,0 +1,7 @@
+#refresh{
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+}
+#refresh:hover{
+    -fx-background-color: rgb(255, 241, 47);
+}

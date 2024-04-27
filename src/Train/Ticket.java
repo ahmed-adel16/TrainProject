@@ -1,42 +1,24 @@
 package Train;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-// Represents a train ticket which implements the Booking interface
-public class Ticket implements Booking {
-    private static int nextTicketID = 1;
-    private String ticketID;
+// Represents a train ticket
+public class Ticket {
+    private int ticketID;
     private Passenger passenger;
     private Train train;
     private String ticketDate;
 
     // Constructor to initialize ticket attributes
-    public Ticket(Passenger passenger, Train train) {
-        this.ticketID = "TKT" + nextTicketID++;
-        this.passenger = passenger;
+    public Ticket(int ticketID, Passenger passenger, Train train, String ticketDate) {
+        this.passenger = passenger; 
         this.train = train;
-        this.book();
-    }
+        this.ticketDate = ticketDate;
+        this.ticketID = ticketID;
+        // Retrieve the next available ticket ID from the database
+     
 
-    // Method to book the ticket
-    @Override
-    public void book() {
-        this.getTrain().setSeats(this.getTrain().getSeats() - 1);
-        Date currentDate = new Date();
-        this.ticketDate = String.format("%tF %tR", currentDate, currentDate);
-        this.getPassenger().addPasasengerTickets(this);
-    }
-
-    // Method to cancel the booking
-    @Override
-    public void cancelBooking() {
-        this.getTrain().setSeats(this.getTrain().getSeats() + 1);
-        this.ticketDate = null;
-    }
-
-    // Getters and Setters
-    public String getTicketID() {
-        return ticketID;
     }
 
     public Passenger getPassenger() {
@@ -47,14 +29,50 @@ public class Ticket implements Booking {
         return train;
     }
 
+   
+    // Getters and setters
+    public int getTicketID() {
+        return ticketID;
+    }
+
+    public void setTicketID(int ticketID) {
+        this.ticketID = ticketID;
+    }
+
+    public String getPassengerEmail() {
+        return passenger.getEmail();
+    }
+    public String getPassengerName() {
+        return passenger.getName();
+    }
+
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
+    }
+
+    public int getTrainNumber() {
+        return train.getTrainNumber();
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
+
     public String getTicketDate() {
         return ticketDate;
     }
 
-    @Override
-    public String toString() {
-        return "Ticket ID: " + ticketID + "\nPassenger: " + passenger.getName() + "\nTrain: " + this.getTrain().getTrainName() + "\nTicket Date: " + ticketDate;
+    public void setTicketDate(String ticketDate) {
+        this.ticketDate = ticketDate;
     }
 
+    // Method to insert a ticket into the database
+   
 
+    // Method to get the current date as a string
+
+    @Override
+    public String toString() {
+        return "\nTicket ID: " + ticketID + "\nPassenger: " + passenger.getName() + "\nTrain: " + this.getTrain().getTrainName() + "\nTicket Date: " + ticketDate + "\n";
+    }
 }

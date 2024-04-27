@@ -12,6 +12,11 @@
             <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes/src/Train/Line.java</file>
             <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes/src/Train/Train.java</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/TrainManagementController.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/RegisterController.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/Main.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/DataValidation.java</file>
+        </group>
     </open-files>
 </project-private>
