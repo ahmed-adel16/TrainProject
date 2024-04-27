@@ -140,6 +140,15 @@
 #cancelBookingButton:pressed {
     -fx-background-color: #B00000;
 }
+#deletePassengerButton{
+    -fx-background-color: #EA0000;
+}
+#deletePassengerButton:hover {
+    -fx-background-color: #d10000;
+}
+#deletePassengerButton:pressed {
+    -fx-background-color: #B00000;
+}
 
 
 #closeButton {

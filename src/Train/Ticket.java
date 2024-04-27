@@ -73,6 +73,6 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "\nTicket ID: " + ticketID + "\nPassenger: " + passenger.getName() + "\nTrain: " + this.getTrain().getTrainName() + "\nTicket Date: " + ticketDate + "\n";
+        return "\nTicket ID: " + ticketID + "\nPassenger name: " + passenger.getName() + "\nTrain name: " + this.getTrain().getTrainName() + "\nTicket Date: " + ticketDate + "\n";
     }
 }

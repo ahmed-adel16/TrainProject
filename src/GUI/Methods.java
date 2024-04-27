@@ -6,6 +6,7 @@ package GUI;
 
 import static GUI.LoginController.confirmationAlert;
 import java.io.IOException;
+import java.util.Optional;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
@@ -37,24 +39,32 @@ public class Methods {
         stage.show();
     }
     
+    public static boolean informationAlert(String title, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+
+        return alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK;
+    }
+
     public static boolean confirmationAlert(String title, String headerText, String contentText) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
 
-        return alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK;
-    }
-    
-    public static boolean informationAlert(String title, String contentText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(contentText);
+        // Add "Yes" and "No" buttons
+        ButtonType buttonYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
 
-        return alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK;
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == buttonYes;
     }
-    public void confirmAndExit(){
-        boolean confirmed = confirmationAlert("Exit", "", "are you sure?");
+
+    public static void confirmAndExit() {
+        boolean confirmed = confirmationAlert("Exit", null, "Are you sure you want to exit?");
         if (confirmed)
             Platform.exit();
     }

@@ -7,14 +7,13 @@ package GUI;
 import Train.DatabaseManager;
 import Train.Line;
 import Train.Passenger;
+import Train.Ticket;
 import Train.Train;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -55,9 +54,11 @@ public class PassengerManagementController extends Methods implements Initializa
     @FXML
     private TextField passengerSearchField;
     @FXML
-    private Button cancelBookingButton;
+    private Button deletePassengerButton;
     @FXML
     private TableView <Passenger> passengerTable;
+    @FXML
+    private TableColumn<Passenger, Integer> IDCol;
     @FXML
     private TableColumn<Passenger, String> nameCol;
     @FXML
@@ -72,7 +73,8 @@ public class PassengerManagementController extends Methods implements Initializa
     private Stage stage;
     private Parent root;
     private Scene scene;
-    
+    public int selectedId;
+
     public void viewTableItems(){
         ObservableList<Passenger> data = FXCollections.observableArrayList();
         try (Connection conn = DatabaseManager.getConnection();
@@ -80,14 +82,16 @@ public class PassengerManagementController extends Methods implements Initializa
              ResultSet rs = statement.executeQuery("SELECT * FROM Passengers")) {
             
             while (rs.next()) {
+                int id = rs.getInt("passenger_id");
                 String name = rs.getString("name");
                 Integer age = rs.getInt("age");
                 String tel = rs.getString("tel");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 
-                data.add(new Passenger(name, age, tel, email, password));
+                data.add(new Passenger(id, name, age, tel, email, password));
             }
+            IDCol.setCellValueFactory(new PropertyValueFactory("id"));
             nameCol.setCellValueFactory(new PropertyValueFactory("name"));
             ageCol.setCellValueFactory(new PropertyValueFactory("age"));
             telCol.setCellValueFactory(new PropertyValueFactory("tel"));
@@ -126,20 +130,64 @@ public class PassengerManagementController extends Methods implements Initializa
             e.printStackTrace();
         }
     }
-
+    
+        public void handleInputs(){
+        passengerTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            
+        if (newSelection != null) {
+            deletePassengerButton.setDisable(false);
+        }
+        else{
+            deletePassengerButton.setDisable(true);
+        }
+        });
+    }
+    
+    public void getSelection(){
+        passengerTable.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) { // Check for single click
+                // Get selected item
+                Passenger selectedItem = passengerTable.getSelectionModel().getSelectedItem();
+                if (selectedItem != null) {
+                    selectedId = selectedItem.getId(); // Retrieve ID
+                }
+            }
+        });
+    }
+    
+    public void deletePassenger(){
+        try{
+        Connection conn = DatabaseManager.getConnection();
+        PreparedStatement st = conn.prepareStatement("DELETE FROM Passengers WHERE passenger_id = " + selectedId);
+        if(Methods.confirmationAlert("Confirm", "Delete passenger with id: " + selectedId, "are you sure?")){
+            st.executeUpdate();
+            refresh();
+        }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public void close(ActionEvent e) {
         confirmAndExit();
     }
 
+    public void back(ActionEvent e) throws IOException {
+        loadFXML("EmployeeMenu.fxml", "", e);
+    }
+    
+    public void refresh(){
+        viewTableItems();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         viewTableItems();
-    }    
-
-    @FXML
-    void back(ActionEvent e) throws IOException {
-        loadFXML("EmployeeMenu.fxml", "", e);
+        getSelection();
+        handleInputs();
     }
+
+    
 
 
     

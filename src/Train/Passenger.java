@@ -8,10 +8,16 @@ import java.security.NoSuchAlgorithmException;
 public class Passenger extends Person {
 
     private String password;
+    private int id;
     // Constructor to initialize passenger attributes
-    public Passenger(String name, int age, String tel, String email, String password) {
+    public Passenger(int id, String name, int age, String tel, String email, String password) {
         super(name, email, age, tel); // Call to parent class constructor
         this.password = password;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getPassword() {
@@ -54,7 +60,7 @@ public class Passenger extends Person {
     // Override toString method for better representation
     @Override
     public String toString() {
-        return "{Name: " + getName() + ", Age: " + getAge() + ", Email: " + getEmail() + ", Tel: " + getTel() + "}";
+        return "{ID: "+ getId() +"Name: " + getName() + ", Age: " + getAge() + ", Email: " + getEmail() + ", Tel: " + getTel() + "}";
     }
 
     

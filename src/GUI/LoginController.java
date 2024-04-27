@@ -8,12 +8,9 @@ import Train.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -21,12 +18,8 @@ import javafx.stage.Stage;
  */
 public class LoginController  extends Methods implements Initializable{
     
-    private Stage stage;
-    private Parent root;
-    private Scene scene;
-    
     @FXML
-    private RadioButton rEmployee, rPassenger, rAdmin;
+    private RadioButton rEmployee, rPassenger;
     @FXML
     private TextField emailField;
     @FXML
@@ -73,7 +66,7 @@ public class LoginController  extends Methods implements Initializable{
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loginMessage.setText("");
+//        loginMessage.setText("");
     }    
     
 }

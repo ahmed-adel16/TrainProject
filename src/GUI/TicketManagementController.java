@@ -12,6 +12,7 @@ import Train.Train;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -67,15 +68,16 @@ public class TicketManagementController extends Methods implements Initializable
     @FXML
     private Button closeButton, backButton, refresh, cancelBookingButton, bookButton;
     @FXML
-    private Label mainTitle;
+    private Label mainTitle, emailError;
     
     private Parent root;
     private Stage stage;
     private Scene scene;
-
+    private int selectedId;
+    private Ticket ticket;
     @FXML
     public void close(ActionEvent event) {
-        Platform.exit();
+        Methods.confirmAndExit();
     }
   
     @FXML
@@ -89,6 +91,7 @@ public class TicketManagementController extends Methods implements Initializable
                 int ticketID = rs.getInt("ticket_id");
                 String ticketDate = rs.getString("ticket_date");
                 Passenger passenger = new Passenger(
+                        rs.getInt("passenger_id"),
                         rs.getString("name"),
                         rs.getInt("age"),
                         rs.getString("tel"),
@@ -100,7 +103,8 @@ public class TicketManagementController extends Methods implements Initializable
                         rs.getInt("seats"),
                         new Line(rs.getString("departure_station"),rs.getString("arrival_station")),
                         rs.getInt("tickets_left"));
-                data.add(new Ticket(ticketID, passenger, train, ticketDate));
+                        ticket = new Ticket(ticketID, passenger, train, ticketDate); 
+                data.add(ticket);
             }
             
             passengerEmailcol.setCellValueFactory(new PropertyValueFactory("passengerEmail"));
@@ -137,6 +141,8 @@ public class TicketManagementController extends Methods implements Initializable
             
             tableView.setItems(sortedData);
             
+            getTrainChoices();
+            
             DatabaseManager.closeConnection();
             
         } catch (SQLException e) {
@@ -145,6 +151,7 @@ public class TicketManagementController extends Methods implements Initializable
     }
     
     public void getTrainChoices(){
+        trainChoice.getItems().clear();
         try {
             Connection c = DatabaseManager.getConnection();
             Statement st = c.createStatement();
@@ -172,6 +179,7 @@ public class TicketManagementController extends Methods implements Initializable
         emailField.textProperty().addListener(listener);
         trainChoice.valueProperty().addListener(listener);
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            
         if (newSelection != null) {
             cancelBookingButton.setDisable(false);
         }
@@ -181,11 +189,81 @@ public class TicketManagementController extends Methods implements Initializable
         });
     }
     
+    public void getSelecttion(){
+        tableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) { // Check for single click
+                // Get selected item
+                Ticket selectedItem = tableView.getSelectionModel().getSelectedItem();
+                if (selectedItem != null) {
+                    selectedId = selectedItem.getTicketID(); // Retrieve ID
+                }
+            }
+        });
+    }
+    
+    public void cancelBooking(){
+        try{
+            Connection c = DatabaseManager.getConnection();
+            PreparedStatement st = c.prepareStatement("DELETE FROM Tickets WHERE ticket_id = ?");
+            st.setInt(1, selectedId);
+            if (Methods.confirmationAlert("Confirm", "Deleting ticket for passenger id: " + selectedId , "are you sure?"))
+                st.executeUpdate();
+            refresh();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void book(){
+        try{
+            Connection c = DatabaseManager.getConnection();
+            // select from passengers the email to check if it's existed and if existed get the id
+            PreparedStatement fetchPassengerId = c.prepareStatement("SELECT passenger_id FROM Passengers WHERE email = ?"); 
+            fetchPassengerId.setString(1, emailField.getText());
+            ResultSet rs = fetchPassengerId.executeQuery();
+            
+            int passengerId = -1; // default if no email found
+            if (trainChoice.getValue() == null){
+                Methods.informationAlert("error", "Select a train");
+                c.close();
+                return;
+            }
+            if (rs.next()){
+                passengerId = rs.getInt("passenger_id"); // set the id if email found
+                emailError.setVisible(false);
+            }else{
+                emailError.setVisible(true);
+                System.out.println("no email");
+                c.close();
+                return; // exists the function
+            }
+            PreparedStatement insertTicket = c.prepareStatement("INSERT INTO Tickets (passenger_id, passenger_email, train_number) VALUES (?, ?, ?)"); // insert ticket with the appropriate id, email and train
+            insertTicket.setInt(1, passengerId);
+            insertTicket.setString(2, emailField.getText());
+            insertTicket.setInt(3, Integer.parseInt(trainChoice.getValue()));
+            insertTicket.executeUpdate();
+            refresh();
+            Methods.informationAlert("Booked Successfully", ticket.toString());
+            fetchPassengerId.close();
+            insertTicket.close();
+            rs.close();
+            c.close();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void refresh(){
+        viewTableItems();
+        emailError.setVisible(false);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         viewTableItems();
         handleInputs();
-        getTrainChoices();
+        getSelecttion();
         
     }    
     

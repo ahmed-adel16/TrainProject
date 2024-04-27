@@ -47,9 +47,11 @@
             </Pane>
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="800.0" spacing="15.0">
                <children>
+                  <Label fx:id="emailError" prefHeight="19.0" prefWidth="109.0" style="-fx-text-fill: #800;" stylesheets="@style.css" text="Email not existed" visible="false" />
                   <TextField fx:id="emailField" prefHeight="30.0" prefWidth="130.0" promptText="Passenger Email" stylesheets="@style.css" />
+                  <Label stylesheets="@style.css" text="Train number" />
                   <ChoiceBox fx:id="trainChoice" prefWidth="150.0" stylesheets="@style.css" />
-                  <Button fx:id="refresh" mnemonicParsing="false" onAction="#viewTableItems" prefHeight="48.0" prefWidth="55.0" stylesheets="@../Style/style.css">
+                  <Button fx:id="refresh" mnemonicParsing="false" onAction="#refresh" prefHeight="48.0" prefWidth="55.0" stylesheets="@../Style/style.css">
                      <graphic>
                         <FontAwesomeIcon fill="#00aaff" glyphName="REFRESH" size="2.3em" />
                      </graphic>
@@ -67,8 +69,8 @@
                         <TextField fx:id="ticketSearchField" layoutX="14.0" layoutY="13.0" prefHeight="29.0" prefWidth="282.0" promptText="Search" style="-fx-border-color: #2ECC71; -fx-background-color: #fff;" />
                      </children>
                   </Pane>
-                  <Button fx:id="bookButton" defaultButton="true" disable="true" mnemonicParsing="false" prefHeight="37.0" prefWidth="89.0" stylesheets="@style.css" text="Book" />
-                  <Button fx:id="cancelBookingButton" disable="true" layoutX="430.0" layoutY="15.0" mnemonicParsing="false" stylesheets="@style.css" text="Cancel Booking" />
+                  <Button fx:id="bookButton" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#book" prefHeight="37.0" prefWidth="89.0" stylesheets="@style.css" text="Book" />
+                  <Button fx:id="cancelBookingButton" disable="true" layoutX="430.0" layoutY="15.0" mnemonicParsing="false" onAction="#cancelBooking" stylesheets="@style.css" text="Cancel Booking" />
                </children>
                <VBox.margin>
                   <Insets top="7.0" />

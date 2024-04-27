@@ -52,7 +52,7 @@
                      </HBox.margin>
                   </FontAwesomeIcon>
                   <TextField fx:id="passengerSearchField" prefHeight="29.0" prefWidth="282.0" promptText="Search" style="-fx-border-color: #2ECC71; -fx-background-color: #fff;" />
-                  <Button fx:id="deletePassengerButton" disable="true" layoutX="430.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: red;" stylesheets="@style.css" text="Delete Passenger" />
+                  <Button fx:id="deletePassengerButton" disable="true" layoutX="430.0" layoutY="15.0" mnemonicParsing="false" onAction="#deletePassenger" style="-fx-background-color: red;" stylesheets="@style.css" text="Delete Passenger" />
                   <Button fx:id="refresh" mnemonicParsing="false" onAction="#viewTableItems" prefHeight="39.0" prefWidth="60.0" stylesheets="@../Style/style.css">
                      <graphic>
                         <FontAwesomeIcon fill="#00aaff" glyphName="REFRESH" size="2.3em" />
@@ -72,10 +72,11 @@
    <center>
       <TableView fx:id="passengerTable" editable="true" prefHeight="407.0" prefWidth="736.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="nameCol" prefWidth="167.0" text="Name" />
-            <TableColumn fx:id="ageCol" prefWidth="57.0" text="Age" />
-            <TableColumn fx:id="telCol" prefWidth="215.0" text="Tel" />
-          <TableColumn fx:id="emailCol" prefWidth="166.0" style="-fx-alignment: center;" text="Email" />
+            <TableColumn fx:id="IDCol" prefWidth="66.0" text="ID" />
+          <TableColumn fx:id="nameCol" prefWidth="142.0" text="Name" />
+            <TableColumn fx:id="ageCol" prefWidth="77.0" text="Age" />
+            <TableColumn fx:id="telCol" prefWidth="174.0" text="Tel" />
+          <TableColumn fx:id="emailCol" prefWidth="177.0" style="-fx-alignment: center;" text="Email" />
             <TableColumn fx:id="passwordCol" prefWidth="178.0" text="Password" />
         </columns>
          <columnResizePolicy>

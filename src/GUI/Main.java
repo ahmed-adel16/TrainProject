@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-public class Main1 extends Application{
+public class Main extends Application{
     private double xOffset = 0;
     private double yOffset = 0;
     
@@ -26,7 +26,7 @@ public class Main1 extends Application{
         stage.setTitle("EaseTrain - Train Res System");
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
-        Parent root = FXMLLoader.load(getClass().getResource("LoginMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("TicketManagement.fxml"));
         Pane topMenu = (Pane) root.lookup("#topMenu");
         
         topMenu.setOnMousePressed(this::handleMousePressed);
