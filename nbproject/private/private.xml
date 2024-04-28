@@ -13,13 +13,11 @@
             <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes/src/Train/Train.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/Train/Train.java</file>
-            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/TrainManagementController.java</file>
-            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/Train/Booking.java</file>
-            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/RegisterController.java</file>
-            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/PassengerManagementController.java</file>
-            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/Train/Ticket.java</file>
-            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/Train/Passenger.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/ReserveMenuController.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/Main.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/ReserveMenu.fxml</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/TrainCardController.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/LoginController.java</file>
         </group>
     </open-files>
 </project-private>

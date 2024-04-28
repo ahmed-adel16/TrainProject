@@ -39,6 +39,13 @@ public class Methods {
         stage.show();
     }
     
+    public void logout(ActionEvent e) throws IOException{
+        boolean confirmed  = confirmationAlert("Logout", "", "Are You Sure?");
+            if (confirmed){
+                loadFXML("LoginMenu.fxml", "Manage Tickets", e);
+            }
+    }
+    
     public static boolean informationAlert(String title, String contentText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -68,6 +75,7 @@ public class Methods {
         if (confirmed)
             Platform.exit();
     }
+
 }
         
 

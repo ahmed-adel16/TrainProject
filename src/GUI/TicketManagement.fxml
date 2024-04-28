@@ -22,16 +22,16 @@
          <children>
             <Pane fx:id="topMenu" prefHeight="75.0" prefWidth="800.0" stylesheets="@style.css">
                <children>
-                  <Button fx:id="closeButton" layoutX="778.0" layoutY="4.0" mnemonicParsing="false" onAction="#close" prefHeight="16.0" prefWidth="12.0">
+                  <Button fx:id="closeButton" layoutX="778.0" layoutY="4.0" mnemonicParsing="false" onAction="#close" prefHeight="16.0" prefWidth="12.0" styleClass="close-btn">
                      <graphic>
-                        <FontAwesomeIcon fill="#a1a0a0" glyphName="CLOSE" size="20" />
+                        <FontAwesomeIcon fill="#a1a0a0" glyphName="CLOSE" size="20" styleClass="close-btn" />
                      </graphic></Button>
                   <Label fx:id="mainTitle" alignment="CENTER" layoutX="112.0" layoutY="13.0" prefHeight="48.0" prefWidth="241.0" stylesheets="@style.css" text="Tickets Management" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Button fx:id="backButton" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="62.0">
+                  <Button fx:id="backButton" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="62.0" styleClass="back-btn">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -69,8 +69,8 @@
                         <TextField fx:id="ticketSearchField" layoutX="14.0" layoutY="13.0" prefHeight="29.0" prefWidth="282.0" promptText="Search" style="-fx-border-color: #2ECC71; -fx-background-color: #fff;" />
                      </children>
                   </Pane>
-                  <Button fx:id="bookButton" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#book" prefHeight="37.0" prefWidth="89.0" stylesheets="@style.css" text="Book" />
-                  <Button fx:id="cancelBookingButton" disable="true" layoutX="430.0" layoutY="15.0" mnemonicParsing="false" onAction="#cancelBooking" stylesheets="@style.css" text="Cancel Booking" />
+                  <Button fx:id="bookButton" defaultButton="true" mnemonicParsing="false" onAction="#book" prefHeight="37.0" prefWidth="89.0" styleClass="btn" stylesheets="@style.css" text="Book" />
+                  <Button fx:id="cancelBookingButton" layoutX="430.0" layoutY="15.0" mnemonicParsing="false" onAction="#cancelBooking" styleClass="btn" stylesheets="@style.css" text="Cancel Booking" />
                </children>
                <VBox.margin>
                   <Insets top="7.0" />

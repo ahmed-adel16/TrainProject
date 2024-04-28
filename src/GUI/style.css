@@ -31,7 +31,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);    
 }
 
-.button {
+.btn {
     -fx-width: 100px;
     -fx-height: 45px;
     -fx-background-color: #2ecc71;
@@ -43,19 +43,17 @@
     
 }
 
-.button:hover {
-}
 
-.button:hover {
+.btn:hover {
     -fx-background-color:  #27ae60 ;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
 }
-.button:focused {
+.btn:focused {
     -fx-background-color:  #27ae60 ;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
 }
 
-.button:pressed{
+.btn:pressed{
     -fx-background-color: #1e8449;
 }
 
@@ -120,17 +118,18 @@
     -fx-text-fill:white;
 }
 
-#backButton {
+.back-btn {
     -fx-background-color:  transparent;
     -fx-padding:0;
 
 }
-#backButton:hover {
+.back-btn:hover {
     -fx-background-color:#006877;
 }
-#backButton:pressed{
+.back-btn:pressed{
     -fx-background-color: #00363E;
 }
+
 #cancelBookingButton {
     -fx-background-color: #EA0000;
 }
@@ -149,18 +148,26 @@
 #deletePassengerButton:pressed {
     -fx-background-color: #B00000;
 }
+#deleteTrainButton:hover {
+    -fx-background-color: #d10000;
+}
+#deleteTrainButton:pressed {
+    -fx-background-color: #B00000;
+}
+#deleteTrainButton{
+    -fx-background-color: #EA0000;
+}
 
-
-#closeButton {
+.close-btn {
     -fx-background-color:  transparent;
     -fx-padding:0;
     -fx-background-radius: 0px;
 }
 
-#closeButton:hover{
+.close-btn:hover{
     -fx-background-color:darkred;
 }
-#closeButton:pressed{
+.close-btn:pressed{
     -fx-background-color:crimson;
 
 }
@@ -179,4 +186,23 @@
     -fx-pref-width:100px;
     -fx-background-color:black;
     -fx-text-fill:#2ECC71;
+}
+
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
+}
+
+.white-bg{
+    -fx-background-color: #fff;
+}
+
+.radius{
+    -fx-background-radius: 8px;
+}
+
+.transparent{
+    -fx-background-color: transparent;
+}
+.pane{
+    -fx-background-image:url("C:/Users/Viber.DESKTOP-7DNSUGI/Downloads/tr.png");
 }

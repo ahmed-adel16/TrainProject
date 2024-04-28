@@ -26,7 +26,7 @@ public class Main extends Application{
         stage.setTitle("EaseTrain - Train Res System");
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
-        Parent root = FXMLLoader.load(getClass().getResource("TicketManagement.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginMenu.fxml"));
         Pane topMenu = (Pane) root.lookup("#topMenu");
         
         topMenu.setOnMousePressed(this::handleMousePressed);
@@ -43,7 +43,7 @@ public class Main extends Application{
                 }
             }
         });
-        Image icon = new Image("/image/train1.png");
+        Image icon = new Image("/image/train2.png");
         stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();

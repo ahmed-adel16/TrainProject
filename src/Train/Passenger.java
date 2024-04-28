@@ -21,7 +21,11 @@ public class Passenger extends Person {
     }
 
     public String getPassword() {
-        return password;
+        return DatabaseManager.doHashing(password);
+    }
+
+    public void setPassword(String password) {
+        this.password = DatabaseManager.doHashing(password);
     }
 
     // Method to authenticate passenger using email and password

@@ -17,7 +17,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,7 +48,6 @@ public class TicketManagementController extends Methods implements Initializable
     @FXML
     private TableColumn<Ticket, Integer> ticketIdCol;
     
-    @FXML
     private TableColumn<Ticket, String> passengerEmailcol;
     
     @FXML
@@ -59,16 +57,16 @@ public class TicketManagementController extends Methods implements Initializable
     private TableColumn<Ticket, String> ticketDateCol;
 
 
+    private TextField ticketSearchField;
     @FXML
-    private TextField ticketSearchField, emailField;
+    private TextField emailField;
     @FXML
     private Pane topMenu;
-    @FXML
     private ChoiceBox<String> trainChoice;
+    private Button closeButton;
     @FXML
-    private Button closeButton, backButton, refresh, cancelBookingButton, bookButton;
-    @FXML
-    private Label mainTitle, emailError;
+    private Button backButton, refresh, cancelBookingButton, bookButton;
+    private Label emailError;
     
     private Parent root;
     private Stage stage;
@@ -76,11 +74,14 @@ public class TicketManagementController extends Methods implements Initializable
     private int selectedId;
     private Ticket ticket;
     @FXML
+    private Label title;
+    @FXML
+    private Label passengerNameLabel;
+    @FXML
     public void close(ActionEvent event) {
         Methods.confirmAndExit();
     }
   
-    @FXML
     public void viewTableItems(){
         ObservableList<Ticket> data = FXCollections.observableArrayList();
         try (Connection conn = DatabaseManager.getConnection();
@@ -165,6 +166,7 @@ public class TicketManagementController extends Methods implements Initializable
         }
     }
     
+    @FXML
     public void back(ActionEvent e) throws IOException{
         loadFXML("EmployeeMenu.fxml", "Employee Menu", e);
     }
@@ -189,7 +191,7 @@ public class TicketManagementController extends Methods implements Initializable
         });
     }
     
-    public void getSelecttion(){
+    public void getSelection(){
         tableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) { // Check for single click
                 // Get selected item
@@ -201,6 +203,7 @@ public class TicketManagementController extends Methods implements Initializable
         });
     }
     
+    @FXML
     public void cancelBooking(){
         try{
             Connection c = DatabaseManager.getConnection();
@@ -254,6 +257,7 @@ public class TicketManagementController extends Methods implements Initializable
             e.printStackTrace();
         }
     }
+    @FXML
     public void refresh(){
         viewTableItems();
         emailError.setVisible(false);
@@ -263,7 +267,7 @@ public class TicketManagementController extends Methods implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         viewTableItems();
         handleInputs();
-        getSelecttion();
+        getSelection();
         
     }    
     

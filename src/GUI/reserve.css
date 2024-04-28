@@ -1,0 +1,204 @@
+
+
+.header{
+    -fx-background-color: linear-gradient(to bottom right, #098c53, #246861);
+    -fx-border-color: #fff;
+    -fx-border-width: 0 0 .8px 0;
+}
+
+.nav-form{
+    -fx-background-color: linear-gradient(to bottom right, #0d4e68, #00775d);
+}
+.inner-nav{
+    -fx-background-color: linear-gradient(to bottom right, #0f3747, #00493b);
+}
+
+.nav-btn{
+    -fx-background-color: transparent;
+    -fx-border-color: #fff;
+    -fx-border-width: .4px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+}
+.nav-btn:hover{
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;
+}
+
+.logout{
+    -fx-background-color: #106abf;
+    -fx-padding: 5px;
+    -fx-cursor: hand;
+    -fx-background-radius: 50px;
+}
+.logout:hover{
+    -fx-background-color: #a71931;
+}
+
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
+}
+
+.white-bg{
+    -fx-background-color: #fff;
+}
+
+.radius{
+    -fx-background-radius: 8px;
+}
+
+.transparent{
+    -fx-background-color: transparent;
+}
+
+.table-view{
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-color: linear-gradient(to bottom right, #0f6789, #286155);
+    -fx-border-radius: 5px;
+    -fx-border-width: 1.5px;
+}
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom right, #0f6789, #286155);
+    -fx-background-radius: 5px 5px 0 0;
+    -fx-background-insets: 0 0 0 0;
+}
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+.table-view .column-header .label{
+    -fx-text-fill: #fff;
+}
+
+.btn{
+    -fx-background-color: linear-gradient(to bottom right, #098c53, #246861); 
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+.btn:hover{
+    -fx-background-color: linear-gradient(to bottom right, #067c43, #2a746b); 
+    -fx-effect :dropShadow(three-pass-box,rgba(0,0,0,0.1), 13.0 , 0.0 , 0.0 ,10.0);
+}
+.btn:pressed{
+    -fx-background-color: linear-gradient(to bottom right, #01552d, #1e4b46); 
+}
+
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button{
+    -fx-background-color: #828282;
+    -fx-background-radius: 30;
+}
+
+.right-bar{
+    -fx-background-color: #D3D3D3;
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.chosen-fruit-card{
+    -fx-background-color: #F16C31;
+    -fx-background-radius: 30;
+}
+
+.comboBox{
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-background-radius: 30;
+}
+
+.add-btn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.free-delivery-card{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.shopping-online-card{
+    -fx-background-color: #BAEAC3;
+    -fx-background-radius: 30;
+}
+
+
+#mainPane{
+    -fx-background-color: #000;
+    -fx-background-radius: 30px;
+}
+
+.spinner {
+    -fx-background-color: #E8F5E9; /* Light green background color */
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.05), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+
+
+.spinner .text-field {
+    -fx-background-color: linear-gradient(to bottom right, #37ce8d, #246861); 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 14px;
+    -fx-padding: 5px; 
+    -fx-border-color: green; 
+    -fx-border-width: 1px; 
+}
+.text-field {
+    -fx-background-color: #164b19; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 14px;
+    -fx-padding: 5px; 
+    -fx-border-color: #164b19; 
+    -fx-border-width: 1px; 
+}
+
+.label {
+    -fx-text-fill: #037940; 
+    -fx-font-size: 15px; 
+    -fx-translate-y: 0px; 
+}
+.label:hover {
+    -fx-text-fill: black; 
+    -fx-font-size: 15px; 
+    -fx-translate-y: -1px; 
+}
+
+.scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to bottom right, #0f6789, #286155);
+    -fx-background-insets: 2;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: linear-gradient(to bottom right, #0f6789, #286155);
+    -fx-background-insets: 2;
+    -fx-background-radius: 5;
+}
+
+.label{
+    -fx-text-fill:black;
+}

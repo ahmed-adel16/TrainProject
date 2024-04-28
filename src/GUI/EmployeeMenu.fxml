@@ -11,7 +11,7 @@
    <top>
       <Pane fx:id="topMenu" prefHeight="75.0" prefWidth="800.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="closeButton" layoutX="778.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="16.0" prefWidth="12.0">
+            <Button fx:id="closeButton" layoutX="778.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="16.0" prefWidth="12.0" styleClass="close-btn">
                <graphic>
                   <FontAwesomeIcon fill="#a1a0a0" glyphName="CLOSE" size="20" />
                </graphic>
@@ -27,10 +27,10 @@
    <center>
       <Pane prefHeight="476.0" prefWidth="800.0" styleClass="root" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="manageTrains" layoutX="267.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" styleClass="shadow-button" text="Manage Trains" />
-            <Button fx:id="manageTickets" layoutX="267.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" styleClass="shadow-button" text="Manage Tickets" />
-            <Button fx:id="managePassengers" layoutX="267.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" styleClass="shadow-button" text="Manage Passengers" />
-            <Button fx:id="logOut" layoutX="267.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" styleClass="shadow-button" text="Logout" />
+            <Button fx:id="manageTrains" layoutX="267.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" styleClass="btn" stylesheets="@style.css" text="Manage Trains" />
+            <Button fx:id="manageTickets" layoutX="267.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" styleClass="btn" stylesheets="@style.css" text="Manage Tickets" />
+            <Button fx:id="managePassengers" layoutX="267.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" styleClass="btn" stylesheets="@style.css" text="Manage Passengers" />
+            <Button fx:id="logOut" layoutX="267.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" styleClass="btn" stylesheets="@style.css" text="Logout" />
          </children>
       </Pane>
    </center>

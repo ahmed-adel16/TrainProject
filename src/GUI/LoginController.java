@@ -10,7 +10,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -33,7 +37,7 @@ public class LoginController  extends Methods implements Initializable{
             
             if (rEmployee.isSelected()){ // checks for radiobutton role selected
                 if (Employee.authenticateEmployee(emailField.getText(), passwordField.getText())){ // checks the credentials
-                    loadFXML("EmployeeMenu.fxml", "Employee Menu", e); // load up the menu
+                    loadEmployeeScene(e, "EmployeeMenu.fxml"); // load up the menu
                 }else{
                     loginMessage.setText("email or password don't match");
                 }
@@ -41,7 +45,7 @@ public class LoginController  extends Methods implements Initializable{
             
             else if (rPassenger.isSelected()){ // checks for radiobutton role selected
                 if (Passenger.authenticatePassenger(emailField.getText(), passwordField.getText())){ // checks the credentials
-                    loadFXML("UserMenu.fxml", "User menu", e); // load up the menu
+                    loadPassengerScene(e, "PassengerMenu.fxml"); // load up the menu
                 }else{
                     loginMessage.setText("email or password don't match");
                 }
@@ -63,6 +67,27 @@ public class LoginController  extends Methods implements Initializable{
         boolean isEmail = DataValidation.emailFormat(emailField, emailLabel , "Invalid, must be like: abcd@ghi.com");
         boolean isPassword = DataValidation.passwordValidation(passwordField, passwordLabel , "must be more at least 8 chars", "8");
         return isEmail && isPassword;
+    }
+    private void loadPassengerScene(ActionEvent e, String fxmlFile) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        PassengerMenuController controller = loader.getController();
+        controller.initData(emailField.getText());
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Main Menu");
+        stage.show();
+    }
+    private void loadEmployeeScene(ActionEvent e, String fxmlFile) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        EmployeeMenuController controller = loader.getController();
+        controller.initData(emailField.getText());
+
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Main Menu");
+        stage.show();
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

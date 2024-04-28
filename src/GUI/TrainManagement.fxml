@@ -21,7 +21,7 @@
          <children>
             <Pane fx:id="topMenu" prefHeight="75.0" prefWidth="800.0" stylesheets="@style.css">
                <children>
-                  <Button fx:id="closeButton" layoutX="778.0" layoutY="4.0" mnemonicParsing="false" onAction="#close" prefHeight="16.0" prefWidth="12.0">
+                  <Button fx:id="closeButton" layoutX="778.0" layoutY="4.0" mnemonicParsing="false" onAction="#close" prefHeight="16.0" prefWidth="12.0" styleClass="close-btn">
                      <graphic>
                         <FontAwesomeIcon fill="#a1a0a0" glyphName="CLOSE" size="20" />
                      </graphic></Button>
@@ -30,9 +30,9 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Button fx:id="backButton" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="62.0">
+                  <Button fx:id="backButton" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="62.0" styleClass="back-btn">
                      <graphic>
-                        <ImageView fx:id="backButton" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="backButton" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="back-btn">
                            <image>
                               <Image url="@../image/icons8-back-50%20(1).png" />
                            </image>
@@ -73,9 +73,9 @@
                         <TextField fx:id="trainSearchField" layoutX="23.0" layoutY="8.0" prefHeight="29.0" prefWidth="282.0" promptText="Search" />
                      </children>
                   </Pane>
-                  <Button fx:id="addTrainButton" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#add" prefHeight="37.0" prefWidth="89.0" stylesheets="@style.css" text="Add" />
-                  <Button fx:id="updateTrainButton" disable="true" layoutX="374.0" layoutY="15.0" mnemonicParsing="false" onAction="#update" style="-fx-background-color: orange;" stylesheets="@style.css" text="Update" />
-                  <Button fx:id="deleteTrainButton" disable="true" layoutX="430.0" layoutY="15.0" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: red;" stylesheets="@style.css" text="Delete" />
+                  <Button fx:id="addTrainButton" defaultButton="true" mnemonicParsing="false" onAction="#add" prefHeight="37.0" prefWidth="89.0" styleClass="btn" stylesheets="@style.css" text="Add" />
+                  <Button fx:id="updateTrainButton" layoutX="374.0" layoutY="15.0" mnemonicParsing="false" onAction="#update" style="-fx-background-color: orange;" styleClass="btn" stylesheets="@style.css" text="Update" />
+                  <Button fx:id="deleteTrainButton" layoutX="430.0" layoutY="15.0" mnemonicParsing="false" onAction="#delete" styleClass="btn" stylesheets="@style.css" text="Delete" />
                </children>
                <VBox.margin>
                   <Insets top="7.0" />

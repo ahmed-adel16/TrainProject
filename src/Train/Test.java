@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) throws SQLException{
-        System.out.println(doHashing("01204326626"));
+        System.out.println(doHashing("01029957328"));
     }
 
    public static String doHashing(String password) {

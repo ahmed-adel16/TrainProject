@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PassengerMenuController">
+   <top>
+      <Pane fx:id="topMenu" prefHeight="75.0" prefWidth="800.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="closeButton" layoutX="778.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleButtons" prefHeight="16.0" prefWidth="12.0" styleClass="close-btn">
+               <graphic>
+                  <FontAwesomeIcon fill="#a1a0a0" glyphName="CLOSE" size="20" />
+               </graphic>
+            </Button>
+            <Label fx:id="mainTitle" alignment="CENTER" layoutX="265.0" layoutY="13.0" prefHeight="48.0" prefWidth="241.0" stylesheets="@style.css" text="Employee MENU" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="526.0" prefWidth="347.0" spacing="70.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" stylesheets="@style.css" text="Reserve">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="label" />
+               </styleClass>
+            </Button>
+            <Button fx:id="showTicketsButton" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" stylesheets="@style.css" text="Show Tickets">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="label" />
+               </styleClass>
+            </Button>
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#handleButtons" prefHeight="81.0" prefWidth="267.0" stylesheets="@style.css" text="Logout">
+               <VBox.margin>
+                  <Insets bottom="-35.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="label" />
+               </styleClass>
+            </Button>
+            <Hyperlink onAction="#changePassword" styleClass="label" stylesheets="@style.css" text="Change password" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

@@ -4,8 +4,13 @@
  */
 package GUI;
 
+import Train.DatabaseManager;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -30,7 +35,29 @@ public class EmployeeMenuController extends Methods implements Initializable{
     private Parent root;
     private Scene scene;
     private Stage stage;
+    private String name, email, tel, password;
+    private int age;
 
+    public void initData(String email){
+        this.email = email;
+        try{
+            Connection c = DatabaseManager.getConnection();
+            PreparedStatement ps = c.prepareStatement("SLECT * FROM Employee WHERE passenger_email = ?");
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            this.name = rs.getString("name");
+            this.tel = rs.getString("tel");
+            this.password = rs.getString("password");
+            this.age = rs.getInt("age");
+            
+//            emailLabel.setText("Email: " + email);
+//            telLabel.setText("Tel: " + tel);
+         
+        }catch(SQLException e){
+        }
+    }
+    
     @FXML
     void handleButtons(ActionEvent e) throws IOException {
         if (e.getSource() == manageTrains){
@@ -43,10 +70,7 @@ public class EmployeeMenuController extends Methods implements Initializable{
             loadFXML("PassengerManagement.fxml", "Manage Tickets", e);
         }
         if (e.getSource() == logOut){
-            boolean confirmed  = confirmationAlert("Logout", "", "Are You Sure?");
-            if (confirmed){
-                loadFXML("LoginMenu.fxml", "Manage Tickets", e);
-            }
+            logout(e);
         }
         if (e.getSource() == closeButton){
             if(confirmationAlert("Exit?", "", "Are You Sure?"))
