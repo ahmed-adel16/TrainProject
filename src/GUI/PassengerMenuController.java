@@ -20,9 +20,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -35,7 +39,7 @@ public class PassengerMenuController extends Methods implements Initializable {
     @FXML
     private Pane topMenu;
     @FXML
-    private Label mainTitle;
+    private Label nameLabel;
     @FXML
     private Button showTicketsButton, reserveButton, logoutButton, closeButton;
 
@@ -66,12 +70,8 @@ public class PassengerMenuController extends Methods implements Initializable {
             rs.close();
             ps.close();
             c.close();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TrainCard.fxml"));
-            loader.load();
-            TrainCardController controller = loader.getController();
-            controller.intitData(this.id, this.name, this.age, this.tel, this.email, this.password);
-            mainTitle.setText(name);
+            nameLabel.setText(name);
+            
         }catch(SQLException e){
         }
     }
@@ -93,7 +93,7 @@ public class PassengerMenuController extends Methods implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PassengerTickets.fxml"));
             Parent root = loader.load();
             PassengerTicketsController controller = loader.getController();
-            controller.initData(id, name, age, tel, email, password);
+            controller.initData(email);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Main Menu");
@@ -105,7 +105,7 @@ public class PassengerMenuController extends Methods implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReserveMenu.fxml"));
             Parent root = loader.load();
             ReserveMenuController controller = loader.getController();
-            controller.initData(id, age, tel, email, password);
+            controller.initData(email);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Main Menu");
@@ -115,8 +115,22 @@ public class PassengerMenuController extends Methods implements Initializable {
     }
     
     @FXML
-    private void changePassword(){
+    private void changePassword() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChangePassword.fxml"));
+        Parent root = loader.load();
+
+        // Create the modal stage
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Change Password");
+        stage.setScene(new Scene(root));
+
+        // Get the controller instance
+        ChangePasswordController controller = loader.getController();
+        // Passing id to controller through initData method
+        controller.initData(id);
         
+        // Show the modal window and wait for it to be closed
+        stage.showAndWait();
     }
-    
 }

@@ -81,7 +81,7 @@ public class TrainManagementController extends Methods implements Initializable 
             st.setString(2, seatsNumberField.getText());
             st.setString(3, fromField.getText());
             st.setString(4, toField.getText());
-            st.setInt(5, 100); // Assuming you want to set train_number to 100
+            st.setInt(5, Integer.parseInt(seatsNumberField.getText())); 
 
             st.executeUpdate();
             st.close();

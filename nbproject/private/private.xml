@@ -14,10 +14,14 @@
         </group>
         <group>
             <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/ReserveMenuController.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/TrainManagementController.java</file>
             <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/Main.java</file>
-            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/ReserveMenu.fxml</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/PassengerMenuController.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/PassengerTicketsController.java</file>
             <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/TrainCardController.java</file>
             <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/LoginController.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/Train/Ticket.java</file>
+            <file>file:/C:/Users/Viber.DESKTOP-7DNSUGI/OneDrive/Documents/NetBeansProjects/TrainRes-github/TrainProject/src/GUI/Primary.java</file>
         </group>
     </open-files>
 </project-private>

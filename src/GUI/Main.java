@@ -43,8 +43,8 @@ public class Main extends Application{
                 }
             }
         });
-        Image icon = new Image("/image/train2.png");
-        stage.getIcons().add(icon);
+//        Image icon = new Image("/image/train2.png");
+//        stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();
     }

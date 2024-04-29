@@ -37,8 +37,8 @@ public class TrainCardController implements Initializable {
     @FXML
     private Button cardBook;
     
-    private static String name, tel, email, password;
-    private static int age, id;
+    private static String email;
+    private static int id;
     private int trainNumber;
     
     private Connection c;
@@ -46,16 +46,26 @@ public class TrainCardController implements Initializable {
     private Statement st;
     private ResultSet rs;
     
-    public void intitData(int id, String name, int age, String tel, String email, String password){
-            this.id = id;
-            this.name = name;
-            this.tel = tel;
+    public void intitData(String email){
             this.email = email;
-            this.password = password;
-            this.age = age;
+            try{
+            c = DatabaseManager.getConnection();
+            ps = c.prepareStatement("SELECT * FROM Passengers WHERE email = ?");
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+
+            this.id = rs.getInt("passenger_id");
+            this.email = rs.getString("email");
+
+            rs.close();
+            ps.close();
+            c.close();
+            
+        }catch(SQLException e){
+        }
     }
     public void setData(Train trainData) {
-        this.trainNumber = trainData.getTrainNumber();
+        trainNumber = trainData.getTrainNumber();
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, trainData.getTicketsLeft(), 0);
         trainName.setText("Train name: " + trainData.getTrainName());
         ticketsLeft.setText("Tickets left: " + trainData.getTicketsLeft());
@@ -69,55 +79,55 @@ public class TrainCardController implements Initializable {
         }
     }
 
-public void book() {
-    int tickets = cardSpinner.getValue();
-    boolean confirmed = true;
-    if(tickets > 0) confirmed = Methods.confirmationAlert("Reservation", "Do you want to Reserve " + tickets + " seat\n" +
-            trainName.getText() + "Train?" +
-            "From: "+from.getText() + "To: " + to.getText() , "press ok to confirm");
-    if(confirmed){
-        try {
-            c = DatabaseManager.getConnection();
+    public void book() {
+        int tickets = cardSpinner.getValue();
+        boolean confirmed = true;
+        if(tickets > 0) confirmed = Methods.confirmationAlert("Reservation", "Do you want to Reserve " + tickets + " seat\n" +
+                trainName.getText() + "Train?" +
+                "From: "+from.getText() + "To: " + to.getText() , "press ok to confirm");
+        if(confirmed){
+            try {
+                c = DatabaseManager.getConnection();
 
-            // Decrease the number of available tickets
-            ps = c.prepareStatement("UPDATE Trains SET tickets_left = tickets_left - ? WHERE train_number = ?");
-            ps.setInt(1, tickets);
-            ps.setInt(2, trainNumber);
-            ps.executeUpdate();
-            ps.close();
-
-            // Insert booking information
-            for (int i = 0; i < tickets; i++) {
-                ps = c.prepareStatement("INSERT INTO Tickets (passenger_email, train_number, passenger_id) VALUES (?, ?, ?)");
-                ps.setString(1, this.email);
+                // Decrease the number of available tickets
+                ps = c.prepareStatement("UPDATE Trains SET tickets_left = tickets_left - ? WHERE train_number = ?");
+                ps.setInt(1, tickets);
                 ps.setInt(2, trainNumber);
-                ps.setInt(3, id);
                 ps.executeUpdate();
                 ps.close();
+
+                // Insert booking information
+                for (int i = 0; i < tickets; i++) {
+                    ps = c.prepareStatement("INSERT INTO Tickets (passenger_email, train_number, passenger_id) VALUES (?, ?, ?)");
+                    ps.setString(1, this.email);
+                    ps.setInt(2, trainNumber);
+                    ps.setInt(3, id);
+                    ps.executeUpdate();
+                    ps.close();
+                }
+
+                // Fetch and display the updated number of tickets left
+                ps = c.prepareStatement("SELECT tickets_left FROM Trains WHERE train_number = ?");
+                ps.setInt(1, trainNumber);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    int newTicketsLeft = rs.getInt("tickets_left");
+                    ticketsLeft.setText("Tickets left: " + newTicketsLeft);
+
+                    SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, newTicketsLeft, 0);
+                    cardSpinner.setValueFactory(valueFactory);
+                }
+
+                rs.close();
+                ps.close();
+                c.close();
+
+
+            }catch (Exception e) {
+                e.printStackTrace();
             }
-
-            // Fetch and display the updated number of tickets left
-            ps = c.prepareStatement("SELECT tickets_left FROM Trains WHERE train_number = ?");
-            ps.setInt(1, trainNumber);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                int newTicketsLeft = rs.getInt("tickets_left");
-                ticketsLeft.setText("Tickets left: " + newTicketsLeft);
-
-                SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, newTicketsLeft, 0);
-                cardSpinner.setValueFactory(valueFactory);
-            }
-
-            rs.close();
-            ps.close();
-            c.close();
-        
-        
-        }catch (Exception e) {
-            e.printStackTrace();
         }
     }
-}
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

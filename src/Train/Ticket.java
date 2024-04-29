@@ -15,9 +15,7 @@ public class Ticket {
         this.passenger = passenger; 
         this.train = train;
         this.ticketDate = ticketDate;
-        this.ticketID = ticketID;
-        // Retrieve the next available ticket ID from the database
-     
+        this.ticketID = ticketID;     
 
     }
 
@@ -66,10 +64,6 @@ public class Ticket {
         this.ticketDate = ticketDate;
     }
 
-    // Method to insert a ticket into the database
-   
-
-    // Method to get the current date as a string
 
     @Override
     public String toString() {

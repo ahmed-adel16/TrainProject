@@ -81,8 +81,6 @@ public class LoginController  extends Methods implements Initializable{
     private void loadEmployeeScene(ActionEvent e, String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = loader.load();
-        EmployeeMenuController controller = loader.getController();
-        controller.initData(emailField.getText());
 
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

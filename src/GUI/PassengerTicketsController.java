@@ -19,7 +19,11 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -27,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -63,65 +68,94 @@ public class PassengerTicketsController extends Methods implements Initializable
     private Ticket ticket;
     private int selectedId;
 
-    private String name, email,tel, password;
-    private int id, age; 
-    
+    private static String name, email, tel, password;
+    private static int id, age;
+
     private Connection c;
     private PreparedStatement ps;
     private Statement st;
     private ResultSet rs;
+
     
-    public void initData(int id, String name, int age, String tel, String email, String password){
-            this.id = id;
-            this.name = name;
-            this.age = age;
-            this.tel = tel;
-            this.email = email;
-            this.password = password;
-            passengerNameLabel.setText(name);
-    }
+    // considering this is the initilization method of the controller other than initialize()
+    public void initData(String email) throws IOException {
+        System.out.println("from init data");
+        this.email = email;
+        try {
+            c = DatabaseManager.getConnection();
+            ps = c.prepareStatement("SELECT * FROM Passengers WHERE email = ?");
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                this.id = rs.getInt("passenger_id");
+                this.name = rs.getString("name");
+                this.tel = rs.getString("tel");
+                this.password = rs.getString("password");
+                this.age = rs.getInt("age");
+            }
+
+            rs.close();
+            ps.close();
+            c.close();
             
+            passengerNameLabel.setText(name);
+            viewTableItems();
+            getSelection();
+            handleInputs();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void close(ActionEvent event) {
         confirmAndExit();
     }
-
+    
     @FXML
     private void back(ActionEvent event) throws IOException {
-        loadFXML("PassengerMenu.fxml","Main Menu",event);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PassengerMenu.fxml"));
+        Parent root = loader.load();
+        PassengerMenuController controller = loader.getController();
+        controller.initData(email);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Main Menu");
+        stage.show();
     }
 
     @FXML
     private void cancelBooking(ActionEvent event) {
-        try{
+        try {
             c = DatabaseManager.getConnection();
             // deleting the ticket from the database
             ps = c.prepareStatement("DELETE FROM Tickets WHERE ticket_id = ?");
             ps.setInt(1, selectedId);
             // making confirmation for the user
-            if (Methods.confirmationAlert("Confirm", "Cancelling your reservation with id: " + selectedId , "are you sure?")){
+            if (Methods.confirmationAlert("Confirm", "Cancelling your reservation with id: " + selectedId, "are you sure?")) {
                 ps.executeUpdate();
             }
             ps.close();
-            
+
             // increasing the tickets left back
             ps = c.prepareStatement("SELECT train_number FROM Tickets where ticket_id = ?"); // selected the percised train
             ps.setInt(1, selectedId);
             rs = ps.executeQuery();
             int trainNumber = -1;
-            if(rs.next()){
+            if (rs.next()) {
                 trainNumber = rs.getInt("train_number");
             }
             ps.close();
             rs.close();
-            
+
             ps = c.prepareStatement("UPDATE Trains SET tickets_left = tickets_left + 1 WHERE train_number = ?"); // updating tickets_left back
             ps.setInt(1, trainNumber);
-              
+
             c.close();
             refresh();
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -130,43 +164,42 @@ public class PassengerTicketsController extends Methods implements Initializable
     private void refresh() {
         viewTableItems();
     }
-    
-    
-    public void viewTableItems(){
+
+    public void viewTableItems() {
+        System.out.println("from viewTable");
         ObservableList<Ticket> data = FXCollections.observableArrayList();
-            int id = this.id;
-        try{
-            Connection c = DatabaseManager.getConnection();
+        data.clear();
+        try {
+            c = DatabaseManager.getConnection();
             ps = c.prepareStatement("SELECT * FROM tickets NATURAL JOIN passengers NATURAL JOIN trains WHERE passenger_id = ?");
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            
             while (rs.next()) {
                 int ticketID = rs.getInt("ticket_id");
                 String ticketDate = rs.getString("ticket_date");
                 Passenger passenger = new Passenger(
-                    rs.getInt("passenger_id"),
-                    rs.getString("name"),
-                    rs.getInt("age"),
-                    rs.getString("tel"),
-                    rs.getString("email"),
-                    rs.getString("password"));
+                        rs.getInt("passenger_id"),
+                        rs.getString("name"),
+                        rs.getInt("age"),
+                        rs.getString("tel"),
+                        rs.getString("email"),
+                        rs.getString("password"));
                 Train train = new Train(
-                    rs.getInt("train_number"),
-                    rs.getString("train_name"),
-                    rs.getInt("seats"),
-                    new Line(rs.getString("departure_station"), rs.getString("arrival_station")),
-                    rs.getInt("tickets_left"));
-                ticket = new Ticket(ticketID, passenger, train, ticketDate); 
+                        rs.getInt("train_number"),
+                        rs.getString("train_name"),
+                        rs.getInt("seats"),
+                        new Line(rs.getString("departure_station"), rs.getString("arrival_station")),
+                        rs.getInt("tickets_left"));
+                ticket = new Ticket(ticketID, passenger, train, ticketDate);    
+                System.out.println(ticket);
                 data.add(ticket);
             }
 
-            
             ticketDateCol.setCellValueFactory(new PropertyValueFactory("ticketDate"));
             ticketIdCol.setCellValueFactory(new PropertyValueFactory("ticketID"));
             trainNumberCol.setCellValueFactory(new PropertyValueFactory("trainNumber"));
             tableView.setItems(data);
-            
+
             // Initializing filtered list
             FilteredList<Ticket> filteredData = new FilteredList<>(data, b -> true);
 
@@ -180,10 +213,10 @@ public class PassengerTicketsController extends Methods implements Initializable
                     String searchKeyword = newValue.toLowerCase();
 
                     // Check if any train attribute contains the search keyword
-                    return String.valueOf(ticket.getTicketID()).contains(searchKeyword) || 
-                           ticket.getTicketDate().toLowerCase().contains(searchKeyword) ||
-                            ticket.getPassengerEmail().toLowerCase().contains(searchKeyword) ||
-                            String.valueOf(ticket.getTrainNumber()).contains(searchKeyword);
+                    return String.valueOf(ticket.getTicketID()).contains(searchKeyword)
+                            || ticket.getTicketDate().toLowerCase().contains(searchKeyword)
+                            || ticket.getPassengerEmail().toLowerCase().contains(searchKeyword)
+                            || String.valueOf(ticket.getTrainNumber()).contains(searchKeyword);
                 });
             });
 
@@ -192,17 +225,16 @@ public class PassengerTicketsController extends Methods implements Initializable
             // Bind sorted results with table view
             sortedData.comparatorProperty().bind(tableView.comparatorProperty());
 
-            
             tableView.setItems(sortedData);
-                        
+
             c.close();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
-    public void getSelection(){
+
+    public void getSelection() {
         tableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) { // Check for single click
                 // Get selected item
@@ -213,9 +245,19 @@ public class PassengerTicketsController extends Methods implements Initializable
             }
         });
     }
+    
+    public void handleInputs(){
+        cancelBookingButton.setDisable(true);
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        if (newSelection != null) {
+            cancelBookingButton.setDisable(false);
+        }
+        else{
+            cancelBookingButton.setDisable(true);
+        }
+        });
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        viewTableItems();
-        getSelection();
-    }    
+    }
 }

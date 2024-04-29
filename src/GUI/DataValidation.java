@@ -19,7 +19,7 @@ public static boolean dataLength(TextField inputTextField, Label inputLabel, Str
         boolean isDataLength = true;
         String validationString = null;
 
-        if (!inputTextField.getText().trim().matches("\\b\\w" + "{" + requiredLength + "},")) {
+        if (!inputTextField.getText().trim().matches("\\b\\w{" + requiredLength + ",}\\b")) {
             isDataLength = false;
             validationString = validationText;
 

@@ -21,7 +21,7 @@ public class Passenger extends Person {
     }
 
     public String getPassword() {
-        return DatabaseManager.doHashing(password);
+        return password;
     }
 
     public void setPassword(String password) {

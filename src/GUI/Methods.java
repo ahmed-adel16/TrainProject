@@ -39,6 +39,10 @@ public class Methods {
         stage.show();
     }
     
+    public void loadPassengerMain(ActionEvent e) throws IOException{
+        loadFXML("PassengerMenu.fxml","Main Menu",e);
+    }
+    
     public void logout(ActionEvent e) throws IOException{
         boolean confirmed  = confirmationAlert("Logout", "", "Are You Sure?");
             if (confirmed){

@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -38,25 +39,6 @@ public class EmployeeMenuController extends Methods implements Initializable{
     private String name, email, tel, password;
     private int age;
 
-    public void initData(String email){
-        this.email = email;
-        try{
-            Connection c = DatabaseManager.getConnection();
-            PreparedStatement ps = c.prepareStatement("SLECT * FROM Employee WHERE passenger_email = ?");
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-
-            this.name = rs.getString("name");
-            this.tel = rs.getString("tel");
-            this.password = rs.getString("password");
-            this.age = rs.getInt("age");
-            
-//            emailLabel.setText("Email: " + email);
-//            telLabel.setText("Tel: " + tel);
-         
-        }catch(SQLException e){
-        }
-    }
     
     @FXML
     void handleButtons(ActionEvent e) throws IOException {
@@ -76,6 +58,7 @@ public class EmployeeMenuController extends Methods implements Initializable{
             if(confirmationAlert("Exit?", "", "Are You Sure?"))
                 Platform.exit();
         }
+
     }
     
     @Override

@@ -48,6 +48,7 @@ public class TicketManagementController extends Methods implements Initializable
     @FXML
     private TableColumn<Ticket, Integer> ticketIdCol;
     
+    @FXML
     private TableColumn<Ticket, String> passengerEmailcol;
     
     @FXML
@@ -56,27 +57,25 @@ public class TicketManagementController extends Methods implements Initializable
     @FXML
     private TableColumn<Ticket, String> ticketDateCol;
 
-
-    private TextField ticketSearchField;
     @FXML
-    private TextField emailField;
+    private TextField ticketSearchField, emailField;
+
     @FXML
     private Pane topMenu;
-    private ChoiceBox<String> trainChoice;
-    private Button closeButton;
     @FXML
-    private Button backButton, refresh, cancelBookingButton, bookButton;
-    private Label emailError;
+    private ChoiceBox<String> trainChoice;
+    @FXML
+    private Button backButton, refresh, cancelBookingButton, bookButton, closeButton;
+    @FXML
+    private Label title, passengerNameLabel, emailError;
     
     private Parent root;
     private Stage stage;
     private Scene scene;
     private int selectedId;
     private Ticket ticket;
-    @FXML
-    private Label title;
-    @FXML
-    private Label passengerNameLabel;
+    
+
     @FXML
     public void close(ActionEvent event) {
         Methods.confirmAndExit();
